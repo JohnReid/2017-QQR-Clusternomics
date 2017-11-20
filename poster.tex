@@ -6,6 +6,11 @@
 \usefonttheme{default}
 \beamertemplatenavigationsymbolsempty
 \usepackage[orientation=portrait, size=a0, scale=1]{beamerposter}
+\setbeamertemplate{bibliography item}{}
+
+%
+% For math
+\usepackage{bm}
 
 %
 % blindtext used to insert dummy text
@@ -51,8 +56,8 @@
   \vspace{24pt}
 
   \includegraphics[height=150pt]{Figures/BSU}
-  % \hspace{30pt}
-  \hfill
+  \hspace{30pt}
+  % \hfill
   \includegraphics[height=150pt]{Figures/UniCam}
 
   \vspace{24pt}
@@ -92,8 +97,15 @@
 % Columns
 \begin{columns}[t]
 \begin{column}{.32\linewidth}
+
+\begin{block}{Aim}
+  Cluster samples when heterogeneous data sources are available.
+  Clustering structures may show varying degrees of concordance
+  across the sources as each reveals a different biological perspective.
+\end{block}
+
 \begin{block}{Typical cancer data}
-  \includegraphics[width=\textwidth]{Figures/cervical-clusters}
+  \includegraphics[width=\textwidth]{Figures/cervical-clusters} \\
   {\small \citejournal{the_cancer_genome_atlas_research_network_integrated_2017}}
 
   \begin{itemize}
@@ -115,8 +127,7 @@
   \end{itemize}
 \end{block}
 
-\begin{block}{Prior work}
-  Bayesian consensus clustering (BCC): \\
+\begin{block}{Bayesian consensus clustering}
   \includegraphics[width=\textwidth]{Figures/BCC-clusters}
   {
     \tiny
@@ -135,14 +146,9 @@
   % \end{itemize}
 \end{block}
 
-\begin{block}{Clustering structures}
-  \includegraphics[width=\textwidth]{Figures/cdc-example-pi.pdf}
-\end{block}
-
-\end{column}
-
-
-\begin{column}{.32\linewidth}
+% \begin{block}{Clustering structures}
+%   \includegraphics[width=\textwidth]{Figures/cdc-example-pi.pdf}
+% \end{block}
 
 \begin{block}{Local vs. global clusters}
   Each context $m$ has \emph{local} mixture weights $\bm{\pi}^{(m)}$:
@@ -150,8 +156,6 @@
     \small
     \bm{\pi}^{(m)} &\sim \text{Dirichlet}\left(\frac{\alpha_m}{K^{(m)}}, \dots, \frac{\alpha_m}{K^{(m)}} \right)
   \end{align*}
-% \end{block}
-% \begin{block}{Global clusters}
   We define the \emph{global} mixture distribution for two contexts as:
   \begin{align*}
     \small
@@ -173,6 +177,11 @@
   \end{align*}
   {\small \citejournal{gabasova_clusternomics:_2017-1}}
 \end{block}
+
+\end{column}
+
+
+\begin{column}{.32\linewidth}
 
 \begin{block}{Simulated data}
   Two contexts each with two well separated clusters. Simulate 100 data sets
@@ -197,7 +206,7 @@
     \item DNA methylation for 574 probes
     \item expression for 423 microRNAs
     \item reverse-phase protein array (RPPA) for 171 proteins
-  \end{itemize}
+  \end{enumerate}
   Allow 3 local clusters per context and 18 global clusters.
 \end{block}
 
@@ -211,14 +220,14 @@
   log-rank test $p = 0.038$
 \end{block}
 
+\begin{block}{Local clusters}
+  \includegraphics[width=\textwidth]{Figures/breast-PCA-local}
+\end{block}
+
 \end{column}
 
 
 \begin{column}{.32\linewidth}
-
-\begin{block}{Local clusters}
-  \includegraphics[width=\textwidth]{Figures/breast-PCA-local}
-\end{block}
 
 \begin{block}{Global clusters}
   \includegraphics[width=\textwidth]{Figures/breast-PCA}
@@ -231,11 +240,23 @@
   log-rank test $p = 0.012$
 \end{block}
 
-% \begin{block}{References}
-%   % \renewcommand*{\bibfont}{\scriptsize}
-%   \renewcommand*{\bibfont}{\footnotesize}
-%   \printbibliography
-% \end{block}
+\begin{block}{Conclusions}
+  We have proposed a clustering algorithm for integrative analysis of
+  heterogenous data sources. The probabilistic model is closely related
+  to the hierarchical Dirichlet process. The model fits both the local
+  structure in each data source and a global structure across all the
+  sources. On simulated data our method performs well. On cancer data
+  our method successfully identified clinically meaningful clusters as
+  measured by the survival probabilities for each global cluster.
+  Overall, the model uses different assumptions about the cluster structure
+  than other currently used integrative clustering algorithms.
+\end{block}
+
+\begin{block}{References}
+  % \renewcommand*{\bibfont}{\scriptsize}
+  \renewcommand*{\bibfont}{\footnotesize}
+  \printbibliography
+\end{block}
 
 \end{column}
 \end{columns}
